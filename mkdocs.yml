@@ -9,6 +9,7 @@ theme:
   name: material
   features:
     - navigation.sections
+    - navigation.indexes
     - navigation.top
     - search.highlight
     - content.code.copy
@@ -38,10 +39,4 @@ markdown_extensions:
 
 plugins:
   - search
-
-nav:
-  - Home: index.md
-  - Getting Started:
-      - Installation: getting-started/installation.md
-      - Quick Start: getting-started/quick-start.md
-  - Contributing: contributing.md
+  - tags

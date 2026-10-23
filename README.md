@@ -15,13 +15,20 @@ docs/               # Markdown sources; everything here becomes the site
 
 ## Local development
 
+The quick way is `./preview.sh`, which creates the venv, installs
+requirements (only when `requirements.txt` changes), and runs `mkdocs serve`.
+To do it by hand:
+
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
-mkdocs serve          # live preview at http://127.0.0.1:8000
-mkdocs build --strict # what CI should run; fails on broken links/nav
+python -m mkdocs serve          # live preview at http://127.0.0.1:8000/educelab-docs/
+python -m mkdocs build --strict # what CI runs; fails on broken links/nav
 ```
+
+Use `python -m mkdocs` rather than plain `mkdocs`, so it always runs the copy
+inside the activated venv rather than a global install that lacks the Material theme.
 
 ## Deployment
 
