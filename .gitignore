@@ -11,3 +11,6 @@ venv/
 .idea/
 .vscode/
 .DS_Store
+
+# Obsidian vault settings (each person keeps their own)
+.obsidian/
