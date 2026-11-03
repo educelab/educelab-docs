@@ -1,7 +1,7 @@
 ---
 title: Edit with Obsidian
 tags: [how-to]
-owner: TBD
+owner: Docs maintainer
 last_reviewed: 2026-11-03
 ---
 # Edit these docs with Obsidian
@@ -200,8 +200,9 @@ Obsidian's default link style doesn't work on the published site. In
 
 - Turn off **Use [[Wikilinks]]**.
 - Set **New link format** to **Relative path to file**.
-- TBD: set **Default location for new attachments** so pasted images land in
-  `assets/`.
+- Set **Default location for new attachments** to **In subfolder under
+  current folder**, and set **Subfolder name** to `assets`. Images you paste
+  into a page are then saved in an `assets` folder next to that page.
 
 ## Make a change
 
@@ -261,9 +262,9 @@ GitHub catches up with your copy.
 2. In the message box at the top, replace `vault backup: {{date}}` with a
    short description of what you changed, for example
    `Fix MISHA LED serial numbers`.
-3. Run commit-and-sync. TBD: name the exact button (hover over the buttons at
-   the top of the panel to see their names), or use the command palette
-   (Cmd+P) and run **Git: Commit-and-sync**.
+3. Select **Commit-and-sync**, the first button in the row at the top of the
+   panel (a circle with an arrow pointing up). You can also open the command
+   palette (Cmd+P) and run **Git: Commit-and-sync**.
 
 ![The Git source control panel on the right, listing changed files under
 Changes](../assets/obsidian/source-control-panel.webp)
@@ -286,10 +287,7 @@ branch. They aren't on the website yet.
    and why.
 4. Select **Create pull request**.
 
-TBD: who reviews pull requests, and whether to request a reviewer.
-
-If the reviewer asks for changes, stay on your branch, edit the pages, and
-[send your changes](#send-your-changes) again. They're added to the same pull
+Anyone with write access to the repository can review and merge your pull
 request.
 
 ### After your pull request is merged
@@ -309,11 +307,32 @@ Then switch back to `main` before you start anything new:
 
 ## Troubleshooting
 
-TBD. Likely entries:
+### Sync fails with `Permission denied (publickey)` or `Host key verification failed`
 
-- **Sync fails with `Permission denied (publickey)` or `Host key verification
-  failed`.** Run `ssh -T git@github.com` in Terminal and redo the
-  [SSH key steps](#add-an-ssh-key-to-github) that fail.
-- **Merge conflict:** someone else changed the same lines as you.
-- **Your edits ended up on an old branch.** You forgot to switch back to
-  `main` after your last pull request was merged.
+GitHub doesn't recognize your computer. In Terminal, run:
+
+```bash
+ssh -T git@github.com
+```
+
+If it doesn't say `You've successfully authenticated`, redo the
+[SSH key steps](#add-an-ssh-key-to-github).
+
+### Your pull request says "This branch has conflicts"
+
+Someone else changed the same lines as you, and their change was merged
+first. If the conflict is small, select **Resolve conflicts** on the pull
+request page. GitHub shows both versions between lines like `<<<<<<<` and
+`>>>>>>>`. Keep the text you want, delete the marker lines, and select
+**Mark as resolved**, then **Commit merge**. If you're not sure which version
+to keep, ask the docs maintainer.
+
+### Your edits ended up on an old branch
+
+You forgot to [switch back to `main`](#after-your-pull-request-is-merged)
+after your last pull request was merged.
+
+- **If you haven't synced the new edits yet,** run **Git: Create new branch**
+  now. Your edits come with you onto the new branch. Then carry on as usual.
+- **If you already synced them,** ask the docs maintainer for help moving
+  them.
